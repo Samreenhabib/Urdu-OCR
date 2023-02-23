@@ -30,7 +30,17 @@ The rename() method renames the columns of the dataframe to "file_name" and "tex
 ```
 import pandas as pd
 import cv2
-df = pd.read_csv('test/, header=None)
+df = pd.read_csv('dataset/test.xlsx, header=None)
 df.rename(columns={0: "file_name", 1: "text"}, inplace=True)
 df
+```
+split the dataframe into a training set and a testing set. The train_test_split() method from the sklearn library is used to split the data. 
+The training set will be used to train the OCR model, while the testing set will be used to evaluate its performance.
+The reset_index() method is used to reset the indices of the dataframes so that they start from 0.
+```
+from sklearn.model_selection import train_test_split
+
+train_df, test_df = train_test_split(df, test_size=0.3)
+train_df.reset_index(drop=True, inplace=True)
+test_df.reset_index(drop=True, inplace=True)
 ```
